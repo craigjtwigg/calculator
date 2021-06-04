@@ -1,5 +1,6 @@
 console.log("Do the math, nerd!")
 
+
 // VARIABLES FOR DISPLAY AND BUTTONS //
 
 const display = document.querySelector('.display');
@@ -19,6 +20,31 @@ equalsBtn.addEventListener('click', doTheMath);
 
 numberBtns.forEach((button) => button.addEventListener('click', () => inputNumber(button.textContent)));
 operatorBtns.forEach((button) => button.addEventListener('click', () => setOperation(button.textContent)));
+
+// KEYBOARD SUPPORT //
+document.addEventListener('keydown', () => keyboardConversion(event.key))
+
+function keyboardConversion(){
+    if      (event.key === "0") { document.getElementById('0').click(); } 
+    else if (event.key === "1") { document.getElementById('1').click(); } 
+    else if (event.key === "2") { document.getElementById('2').click(); }  
+    else if (event.key === "3") { document.getElementById('3').click(); } 
+    else if (event.key === "4") { document.getElementById('4').click(); } 
+    else if (event.key === "5") { document.getElementById('5').click(); } 
+    else if (event.key === "6") { document.getElementById('6').click(); } 
+    else if (event.key === "7") { document.getElementById('7').click(); } 
+    else if (event.key === "8") { document.getElementById('8').click(); } 
+    else if (event.key === "9") { document.getElementById('9').click(); } 
+    else if (event.key === "Backspace") { document.getElementById('delete').click(); } 
+    else if (event.key === "c" || event.key === "C") { document.getElementById('clear').click(); } 
+    else if (event.key === "+") { document.getElementById('plus').click(); } 
+    else if (event.key === "-") { document.getElementById('minus').click(); } 
+    else if (event.key === "x" || event.key === "X" || event.key === "*" ) { document.getElementById('multiply').click(); } 
+    else if (event.key === "/") { document.getElementById('divide').click(); }
+    else if (event.key === "=") { document.getElementById('equals').click(); } 
+    else if (event.key === ".") { document.getElementById('point').click(); }  
+
+}
 
 
 // VARIABLES FOR INPUTS //
@@ -41,31 +67,38 @@ function resetDisplay(){
 }
 
 function backspace(){
-display.textContent = display.textContent.toString().slice(0, -1);
+    display.textContent == "" || display.textContent == "0" || display.textContent == "D" ? 
+    display.textContent = "0" : display.textContent = display.textContent.toString().slice(0, -1);
 }
 
 // APPENDING TO DISPLAY FUNCTIONS // 
 
 function inputNumber(number){
+    if (number === isNaN){
+        display.textContent = "";
+    }
     if (display.textContent == 0 || display.textContent == "DO THE MATH, NERD!") {
-        resetDisplay();}
+        resetDisplay();
+    }
 display.textContent += number;
 }
 
 function inputPoint(){
-    display.textContent += "."
+    display.textContent.includes(".") ? display.textContent += "" : display.textContent += ".";
 }
 
 function oops(){
-    display.textContent = "DON'T BE AN IDIOT!";
+    (display.textContent = "DON'T BE AN IDIOT!");
 }
 
-function doTheMath(){
-    if (currentOperation === '/' && display.textContent === '0'){
-        oops();
+// CALCULATION FUNCTIONS //
+
+function doTheMath(){ // TRIGGERED BY EQUALS BUTTON //
+    if (display.textContent == '0' && currentOperation == '/'){
+        alert("Don't be an idiot.");
     }
     numberB = display.textContent;
-    display.textContent = roundNumber(operate(currentOperation, numberA, numberB));
+    display.textContent = roundNumber(getOperator(currentOperation, numberA, numberB));
     currentOperation = null;
 }
 
@@ -98,7 +131,7 @@ currentOperation = operator;
 resetDisplay();
 }
 
-function operate(operator, numberA, numberB){
+function getOperator(operator, numberA, numberB){
     numberA = Number(numberA);
     numberB = Number(numberB);
 
@@ -106,7 +139,7 @@ function operate(operator, numberA, numberB){
         case 'x':
             return multiply(numberA, numberB);
         case '/':
-            return numberB == 0 ? null : divide(numberA, numberB)    ;
+            return divide(numberA, numberB);
         case '+':
             return plus(numberA, numberB);
         case '-':

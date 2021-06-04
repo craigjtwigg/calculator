@@ -3,6 +3,7 @@
 
 body {
     font-family: 'Electrolize', sans-serif;
+    font-size: 16px;
     background-image: linear-gradient(to bottom right, rgb(159, 2, 226), rgb(63, 0, 211) )
 }
 
@@ -48,6 +49,7 @@ a {
 
 .display {
     grid-area: display;
+    overflow: hidden;
     background-color: rgb(23, 102, 23);
     color: rgb(220, 252, 157);
     font-family: 'VT323', monospace;
@@ -112,7 +114,7 @@ a {
     background-color: crimson;
     color: whitesmoke;
     text-align: center;
-    padding: 0.5rem;
+    padding: 0.4rem;
     position: relative;
     display: inline-block;
     border: none;

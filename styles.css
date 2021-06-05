@@ -4,7 +4,7 @@
 body {
     font-family: 'Electrolize', sans-serif;
     font-size: 16px;
-    background-image: linear-gradient(to bottom right, rgb(159, 2, 226), rgb(63, 0, 211) )
+    background: rgb(159, 2, 226);
 }
 
 a {
@@ -20,20 +20,20 @@ a {
                          "4 5 6 multiply"
                          "1 2 3 minus"
                          "point 0 equals plus";
-    grid-template-rows: 1fr 2.4rem 1fr 1fr 1fr 1fr;                         
+    grid-template-rows: 1.5fr 0.8fr 1fr 1fr 1fr 1fr;                         
     grid-template-columns: 1fr 1fr 1fr 1fr;
     justify-items: stretch;
     align-items: stretch;
     justify-content: space-between;
     align-content: space-between;
-    gap: 1rem;
+    gap: 1.5rem;
     margin-left: auto;
     margin-right: auto;
     margin-top: 2vh;
-    padding: 1.5rem;
+    padding: 2rem;
     padding-bottom: 1.8;
-    width: 15rem;
-    height: 20rem;
+    width: 25rem;
+    height: 32rem;
     background-color: rgb(182, 177, 177);
     border-radius: 1.5rem;
 
@@ -53,10 +53,10 @@ a {
     background-color: rgb(23, 102, 23);
     color: rgb(220, 252, 157);
     font-family: 'VT323', monospace;
-    min-height: 2.5rem;
-    font-size: 1.9rem;
+    min-height: 5.5rem;
+    font-size: 5rem;
     text-align: right;
-    padding: 0.5rem;
+    padding-right: 1.5%;
 
     -moz-box-shadow:    inset 0 0.3rem 0 rgb(8, 44, 8), 0 1px 0 #ffffff88;
     -webkit-box-shadow: inset 0 0.3rem 0 rgb(8, 44, 8), 0 1px 0 #ffffff88;
@@ -65,7 +65,7 @@ a {
 
 #logo {
     grid-area: logo;
-    height: 2rem;
+    height: 3rem;
     background-color: rgb(182, 177, 177);
     margin-top: 0.3rem;
 }
@@ -73,6 +73,7 @@ a {
 #clear {
     grid-area: clear;
     font-family: 'Lexend Deca', sans-serif;
+    font-size: 1.5rem;
     background-color: crimson;
     color: whitesmoke;
     text-align: center;
@@ -147,13 +148,14 @@ a {
 }
 
 #back {
-    height: 1rem;
+    height: 1.5rem;
     margin-top: 0.3rem;
 }
 
 .operator {
     background-color: rgb(31, 31, 31);
     font-family: 'Lexend Deca', sans-serif;
+    font-size: 1.3rem;
     color: whitesmoke;
     text-align: center;
     padding: 0.5rem;
@@ -191,6 +193,7 @@ a {
 .number, #point {
     position: relative;
     font-family: 'Lexend Deca', sans-serif;
+    font-size: 1.6rem;
     display: inline-block;
     background-color: rgb(71, 71, 71);
     color: whitesmoke;
@@ -210,7 +213,7 @@ a {
     
     -webkit-border-radius: 0.5rem;
     -moz-border-radius: 0.5rem;
-    border-radius: 0.5rem;
+    border-radius: 10%;
 }
 
 .number:hover {
@@ -244,6 +247,7 @@ a {
 #equals {
     background-color:#F78900;
     text-align: center;
+    font-size: 1.7rem;
     padding: 0.5rem;
     position: relative;
     display: inline-block;

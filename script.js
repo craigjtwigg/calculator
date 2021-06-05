@@ -77,7 +77,7 @@ function inputNumber(number){
     if (number === isNaN){
         display.textContent = "";
     }
-    if (display.textContent == 0 || display.textContent == "DO THE MATH, NERD!") {
+    if (display.textContent == 0 || display.textContent == "DO THE MATH!") {
         resetDisplay();
     }
 display.textContent += number;

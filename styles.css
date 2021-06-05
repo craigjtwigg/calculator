@@ -4,7 +4,7 @@
 body {
     font-family: 'Electrolize', sans-serif;
     font-size: 16px;
-    background: rgb(159, 2, 226);
+    background: rgb(8, 81, 150);
 }
 
 a {
@@ -12,8 +12,16 @@ a {
     text-decoration: none;
 }
 
+.outer {
+    display: grid;
+    width: 100vw;
+    grid-template-areas: "calc"
+                         "footer";
+}
+
 .container {
     display: grid;
+    grid-area: calc;
     grid-template-areas: "display display display display"
                          "logo logo clear delete"
                          "7 8 9 divide"
@@ -280,15 +288,40 @@ a {
     
 }
 
+.avi {
+    height: 2rem;
+    display: inline-block;
+    position: relative;
+    top: 0.5rem
+}
+
+.created { 
+    display: inline-block;
+}
+
+footer {
+    grid-area: footer;
+    padding: 1.5rem;
+    font-family: 'VT323', monospace;
+    text-align: center;
+}
+
 @media (orientation: portrait) {
+
+    body {
+        background: rgb(8, 81, 150);
+    }
+
     .container {
-        width: 20rem;
-        height: 28rem;
+        grid-template-rows: 1.2fr 0.8fr 1fr 1fr 1fr 1fr;  
+        gap: 0.8rem;
+        width: 18rem;
+        height: 26rem;
+        margin-top: 2rem;
     }
 
     .display {
-        font-size: 4rem;
-        gap: 1rem;
-        min-height: 4.5rem;
+        font-size: 3.5rem;
+        min-height: 4rem;
     }
 }

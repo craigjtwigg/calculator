@@ -19,7 +19,7 @@ pointBtn.addEventListener('click', inputPoint);
 equalsBtn.addEventListener('click', doTheMath);
 
 numberBtns.forEach((button) => button.addEventListener('click', () => inputNumber(button.textContent)));
-operatorBtns.forEach((button) => button.addEventListener('click', () => setOperation(button.textContent)));
+operatorBtns.forEach((button) => button.addEventListener('click', () => applyOperator(button.textContent)));
 
 // KEYBOARD SUPPORT //
 document.addEventListener('keydown', () => keyboardConversion(event.key))
@@ -87,12 +87,12 @@ function inputPoint(){
     display.textContent.includes(".") ? display.textContent += "" : display.textContent += ".";
 }
 
-function oops(){
-    (display.textContent = "DON'T BE AN IDIOT!");
-}
-
 // CALCULATION FUNCTIONS //
 
+function roundNumber(number){
+    return Math.round(number * 1000) / 1000;
+}    
+   
 function doTheMath(){ // TRIGGERED BY EQUALS BUTTON //
     if (display.textContent == '0' && currentOperation == '/'){
         alert("Don't be an idiot.");
@@ -101,12 +101,6 @@ function doTheMath(){ // TRIGGERED BY EQUALS BUTTON //
     display.textContent = roundNumber(getOperator(currentOperation, numberA, numberB));
     currentOperation = null;
 }
-
-function roundNumber(number){
-    return Math.round(number * 1000) / 1000;
-}
-
-// OPERATION FUNCTIONS //
 
 function multiply(numberA, numberB){
     return numberA * numberB;
@@ -124,11 +118,11 @@ function minus(numberA, numberB){
     return numberA - numberB;
 }
 
-function setOperation(operator){
-if (currentOperation !== null) doTheMath();
-numberA = display.textContent;
-currentOperation = operator;
-resetDisplay();
+function applyOperator(operator){
+    if (currentOperation !== null) doTheMath();
+    numberA = display.textContent;
+    currentOperation = operator;
+    resetDisplay();
 }
 
 function getOperator(operator, numberA, numberB){
@@ -146,7 +140,8 @@ function getOperator(operator, numberA, numberB){
             return minus(numberA, numberB);
         default:
             return null;            
-    }
+}
+ 
 }
 
 

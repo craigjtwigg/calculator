@@ -288,6 +288,7 @@ a {
 
     .display {
         font-size: 4rem;
-
+        gap: 1rem;
+        min-height: 4.5rem;
     }
 }

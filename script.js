@@ -10,6 +10,7 @@ const pointBtn = document.querySelector('#point');
 const equalsBtn = document.querySelector('#equals');
 const numberBtns = document.querySelectorAll('.number');
 const operatorBtns = document.querySelectorAll('.operator');
+const button = document.querySelectorAll('button');
 
 // EVENT LISTENERS FOR BUTTONS //
 
@@ -20,6 +21,7 @@ equalsBtn.addEventListener('click', doTheMath);
 
 numberBtns.forEach((button) => button.addEventListener('click', () => inputNumber(button.textContent)));
 operatorBtns.forEach((button) => button.addEventListener('click', () => applyOperator(button.textContent)));
+button.forEach((button) => button.addEventListener('click', () => playButtonSound())); 
 
 // KEYBOARD SUPPORT //
 document.addEventListener('keydown', () => keyboardConversion(event.key))
@@ -44,6 +46,36 @@ function keyboardConversion(){
     else if (event.key === "=") { document.getElementById('equals').click(); } 
     else if (event.key === ".") { document.getElementById('point').click(); }  
 
+}
+
+// AUDIO FUNCTIONS
+
+function playErrorSound(){
+    const errorsound = document.getElementById('errorsound');
+    if(!errorsound){ return; }
+    errorsound.currentTime = 0;
+    errorsound.play();
+}
+
+function playButtonSound(){
+    const buttonsound = document.getElementById('clicksound');
+    if(!buttonsound){ return; }
+    buttonsound.currentTime = 0;
+    buttonsound.play();
+}
+
+// ERROR FUNCTIONS
+
+function oops(){
+    display.textContent = "YOU IDIOT...";
+    playErrorSound();
+}
+
+function doNotCrash(){
+    if(display.textContent == "Infinity"){
+        resetDisplay();
+        oops();
+    }
 }
 
 
@@ -77,7 +109,7 @@ function inputNumber(number){
     if (number === isNaN){
         display.textContent = "";
     }
-    if (display.textContent == 0 || display.textContent == "DO THE MATH!") {
+    if (display.textContent == 0 || display.textContent == "DO THE MATH!" || display.textContent == "YOU IDIOT...") {
         resetDisplay();
     }
 display.textContent += number;
@@ -94,12 +126,10 @@ function roundNumber(number){
 }    
    
 function doTheMath(){ // TRIGGERED BY EQUALS BUTTON //
-    if (display.textContent == '0' && currentOperation == '/'){
-        alert("Don't be an idiot.");
-    }
     numberB = display.textContent;
     display.textContent = roundNumber(getOperator(currentOperation, numberA, numberB));
     currentOperation = null;
+    doNotCrash();
 }
 
 function multiply(numberA, numberB){

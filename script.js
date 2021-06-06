@@ -87,7 +87,7 @@ function oops(){
 }
 
 function doNotCrash(){
-    if(display.textContent == "Infinity"){
+    if(display.textContent == "Infinity" ||  display.textContent == "NaN"){
         resetDisplay();
         oops();
     }

@@ -13,6 +13,8 @@ const numberBtns = document.querySelectorAll('.number');
 const operatorBtns = document.querySelectorAll('.operator');
 const button = document.querySelectorAll('button');
 
+let gotResult = false;
+
 // EVENT LISTENERS FOR BUTTONS //
 
 clearBtn.addEventListener('click', clear);
@@ -134,13 +136,12 @@ function defaultScreen(){
 // APPENDING TO DISPLAY FUNCTIONS // 
 
 function inputNumber(number){
-    if (number === isNaN){
-        display.textContent = "";
-    }
-    if (display.textContent === "0" || display.textContent == "DO THE MATH!" || display.textContent == "YOU IDIOT...") {
+    
+    if (gotResult === true || display.textContent === "0" || display.textContent == "DO THE MATH!" || display.textContent == "YOU IDIOT...") {
         resetDisplay();
     }
 display.textContent += number;
+gotResult = false;
 }
 
 function inputPoint(){
@@ -152,10 +153,16 @@ function inputPoint(){
 function roundNumber(number){
     return Math.round(number * 1000) / 1000;
 }    
-   
+
+function getResult(){
+    gotResult = true;
+    const result = display.textContent = roundNumber(getOperator(currentOperation, numberA, numberB));
+    return result;
+}
+
 function doTheMath(){ // TRIGGERED BY EQUALS BUTTON //
     numberB = display.textContent;
-    display.textContent = roundNumber(getOperator(currentOperation, numberA, numberB));
+    getResult();
     currentOperation = null;
     doNotCrash();
 }

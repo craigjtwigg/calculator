@@ -3,6 +3,7 @@ console.log("Do the math, nerd!")
 
 // VARIABLES FOR DISPLAY AND BUTTONS //
 
+const outer = document.querySelector('.outer');
 const display = document.querySelector('.display');
 const clearBtn = document.querySelector('#clear');
 const delBtn = document.querySelector('#delete');
@@ -66,9 +67,21 @@ function playButtonSound(){
 
 // ERROR FUNCTIONS
 
+function errorDisplay(){
+    display.style.background = 'rgb(170, 28, 10)';
+    display.style.color = '#FFFFFF';
+}
+
+function errorShake(){
+    display.style.animation = 'shake 0.2s';
+    display.style.animationIterationCount = '2';
+}
+
 function oops(){
     display.textContent = "YOU IDIOT...";
     playErrorSound();
+    errorDisplay();
+    errorShake();
 }
 
 function doNotCrash(){
@@ -88,6 +101,7 @@ let currentOperation = null;
 // 'REMOVING' FUNCTIONS //
 
 function clear(){
+    defaultScreen();
     display.textContent = "0";
     numberA = '';
     numberB = '';
@@ -95,12 +109,26 @@ function clear(){
 }
 
 function resetDisplay(){
+    defaultScreen();
     display.textContent ="";
 }
 
 function backspace(){
+    if (display.textContent == "YOU IDIOT..."){
+        resetDisplay();
+    }
     display.textContent == "" || display.textContent == "0" || display.textContent == "D" ? 
     display.textContent = "0" : display.textContent = display.textContent.toString().slice(0, -1);
+}
+
+function resetShake(){
+    display.style.animation = 'none';
+}
+
+function defaultScreen(){
+    display.style.background = 'rgb(23, 102, 23)';
+    display.style.color = 'rgb(220, 252, 157)';
+    resetShake();
 }
 
 // APPENDING TO DISPLAY FUNCTIONS // 
@@ -109,7 +137,7 @@ function inputNumber(number){
     if (number === isNaN){
         display.textContent = "";
     }
-    if (display.textContent == 0 || display.textContent == "DO THE MATH!" || display.textContent == "YOU IDIOT...") {
+    if (display.textContent === "0" || display.textContent == "DO THE MATH!" || display.textContent == "YOU IDIOT...") {
         resetDisplay();
     }
 display.textContent += number;
